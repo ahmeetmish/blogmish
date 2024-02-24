@@ -1,6 +1,10 @@
 import "./globals.css"
 import { Inter } from "next/font/google"
 
+import Navbar from "./components/Navbar"
+
+import { ThemeProvider } from "../components/ui/theme-provider.jsx"
+
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata = {
@@ -11,8 +15,16 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        {children}
+      <body className={`container mx-auto ${inter.className}`}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Navbar />
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   )
